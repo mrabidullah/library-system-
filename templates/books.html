@@ -1,0 +1,47 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'style/book.css' %}">
+
+
+
+
+<!-- Search Section -->
+<div class="search-section">
+  <form method="POST" action="{% url 'book' %}" class="search-box">
+    <input type="text" name="q" placeholder="Search for books, authors, or titles..." required>
+    <button type="submit"><i class="fas fa-search"></i></button>
+  </form>
+</div>
+
+<!-- Book Cards -->
+<div class="book-container">
+  {% for i in data %}
+  <div class="book-card">
+    <div class="book-image">
+      {% if i.media %}
+        <img src="{{ i.media.url }}" alt="{{ i.books_name }}">
+      {% else %}
+        <img src="{% static 'images/default-book.jpg' %}" alt="No Image">
+      {% endif %}
+    </div>
+    <div class="book-details">
+      <h2>Book: {{ i.books_name }}</h2>
+      <h4>Title: {{ i.books_title }}</h4>
+      <p class="description">Description: {{ i.books_descripation|truncatechars:120 }}</p>
+      <div class="author"><i class="fas fa-pen-nib"></i> Author: {{ i.books_author }}</div>
+    </div>
+    <div style="text-align: center; padding: 0 0 20px 0;">
+      <a href="{% url 'form' i.id %}" class="issue-btn">Issue</a>
+    </div>
+  </div>
+  {% empty %}
+    <p style="text-align: center; width: 100%;">No books found.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
+
+  

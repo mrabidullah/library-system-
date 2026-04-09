@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enchanted Library Admin</title>
+    <link rel="stylesheet" href="{% static 'style/admin.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Added favicon -->
+    <link rel="icon" href="https://via.placeholder.com/32?text=📖" type="image/png">
+</head>
+<body>
+
+            <!-- Table remains the same -->
+
+    <div class="sidebar">
+        <h1 class="magical-title">✨Abid Library Admin</h1>
+        <nav class="nav-magical">
+            <a href="#dashboard" class="nav-link"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a>
+            <a href="#books" class="nav-link"><i class="fas fa-book icon"></i> Books</a>
+            <a href="#issues" class="nav-link"><i class="fas fa-exchange-alt icon"></i> Issues</a>
+            <a href="#comments" class="nav-link"><i class="fas fa-comment icon"></i> Comments</a>
+        </nav>
+    </div>
+    <main>
+        <!-- Dashboard Section -->
+        <section id="dashboard">
+           <center> <h2 class="section-title" >Dashboard</h2></center>
+            <div class="magic-card dashboard-card">
+                <h3>Welcome to Enchanted Library</h3>
+                <p>Manage your books, track issues, and review comments with a touch of magic.</p>
+            </div>
+        </section>
+
+        <!-- Books Section -->
+        
+<section id="books">
+    
+    <!-- Search Form -->
+    <div id="abid"><h2 class="section-title">Books</h2>
+    <form method="post" action="{% url 'adminsrch' %}" class="search-form">
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="Search books..." class="search-input" value="{{ request.GET.q }}">
+        <button type="submit" class="search-button"><i class="fas fa-search"></i> Search</button>
+    </form></div>
+
+    <div class="table-container">
+        <table class="magic-table">
+
+            <div class="table-container">
+                <table class="magic-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in data1 %}
+                        <tr>
+                            <td><i class="fas fa-book icon"></i> {{ book.books_name }}</td>
+                            <td>{{ book.books_title }}</td>
+                            <td>{{ book.books_author }}</td>
+                            <td>{{ book.books_descripation}}</td>
+                            <td><img src="{{ book.media.url }}" alt="{{ book.books_name }}" class="table-image"></td>
+                            <td>
+                                <a href="{% url 'update' book.id %}" class="magic-btn"><i class="fas fa-edit icon-btn"></i> Edit</a>
+                                <a href="{% url 'delete' book.id %}" class="magic-btn magic-btn-danger"><i class="fas fa-trash icon-btn"></i> Delete</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="6">No books available.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Book Issues Section -->
+        <section id="issues">
+            <h2 class="section-title">Book Issues</h2>
+            <div class="table-container">
+                <table class="magic-table">
+                    <thead>
+                        <tr>
+                            <th>Issued To</th>
+                            <th>Book Name</th>
+                            <th>Phone Number</th>
+                            <th>Issue Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for issue in data2 %}
+                        <tr>
+                            <td><i class="fas fa-user icon"></i> {{ issue.name }}</td>
+                            <td>{{ issue.books_name }}</td>
+                            <td>{{ issue.phon_no }}</td>
+                            <td>{{ issue.issue_time|date:"M d, Y H:i" }}</td>
+                            <td>
+                                <a href="#" class="magic-btn"><i class="fas fa-edit icon-btn"></i> Edit</a>
+                                <a href="{% url 'delete' issue.id %}" class="magic-btn magic-btn-danger"><i class="fas fa-trash icon-btn"></i> Delete</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="5">No issues recorded.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Comments Section -->
+        <section id="comments">
+            <h2 class="section-title">Comments</h2>
+            <div class="table-container">
+                <table class="magic-table">
+                    <thead>
+                        <tr>
+                            <th>Comment</th>
+                            <th>Book</th>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in data3 %}
+                        <tr>
+                            <td>{{ c.comment1|truncatewords:20 }}</td>
+                            <td>{{ c.book_ss.books_name }}</td>
+                            <td><i class="fas fa-user-circle icon"></i> {{ c.user.username }}</td>
+                            <td>{{ c.created_at|date:"M d, Y H:i" }}</td>
+                            <td>
+                                <a href="" class="magic-btn"><i class="fas fa-edit icon-btn"></i> Edit</a>
+                                <a href="{% url 'delete' c.id %}" class="magic-btn magic-btn-danger"><i class="fas fa-trash icon-btn"></i> Delete</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="5">No comments available.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Login Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 26px;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 12px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.6);
+      pointer-events: none;
+      transition: 0.3s ease;
+      background: rgba(15, 12, 41, 0.7);
+      padding: 0 5px;
+    }
+
+    .form-group input:focus,
+    .form-group input:not(:placeholder-shown) {
+      border-color: #45aaf2;
+      box-shadow: 0 0 8px #45aaf280;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label {
+      top: -8px;
+      left: 10px;
+      font-size: 12px;
+      color: #45aaf2;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 114, 255, 0.4);
+    }
+
+    .bottom-text {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .bottom-text a {
+      color: #45aaf2;
+      text-decoration: none;
+      margin-left: 4px;
+      transition: color 0.2s;
+    }
+
+    .bottom-text a:hover {
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Welcome Back</h2>
+    <p>{{error}}</p>
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="form-group">
+        <input type="name" id="name" name="name" required placeholder=" username" />
+        <label for="name">Email Address</label>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" name="password3" required placeholder="password " />
+        <label for="password">Password</label>
+      </div>
+      <button type="submit" class="login-btn">Log In</button>
+      <div class="bottom-text">
+        Don't have an account?<a href="{% url 'admin' %}">Sign up</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

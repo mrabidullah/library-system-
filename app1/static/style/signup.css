@@ -1,0 +1,222 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Watermark Background */
+body::before {
+    content: 'Adid Developer';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 8rem;
+    font-weight: 800;
+    color: rgba(168, 85, 247, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    opacity: 0.8;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+    animation: pulseWatermark 10s ease-in-out infinite;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #2d1b4e, #db2777, #f97316);
+    min-height: 100vh;
+    color: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Form Container */
+.form-container {
+    background: rgba(45, 27, 78, 0.2);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+/* Form Fields */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 12px;
+    background: rgba(55, 65, 81, 0.3);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    border-radius: 10px;
+    color: #e5e7eb;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: #9ca3af;
+    opacity: 0.7;
+}
+
+.form-group label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #d1d5db;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group input:not(:placeholder-shown) {
+    border-color: #d946ef;
+    box-shadow: 0 0 8px rgba(217, 70, 239, 0.5);
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 10px;
+    background-color: rgba(45, 27, 78, 0.7);
+    padding: 0 6px;
+    font-size: 12px;
+    color: #d946ef;
+}
+
+/* Button */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(to right, #4f46e5, #a855f7);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(to right, #a855f7, #eab308);
+}
+
+/* Error Message */
+.error-message {
+    color: #f87171;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Login Link */
+.login-link {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+    margin-top: 1rem;
+}
+
+.login-link a {
+    color: #eab308;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: #fef08a;
+}
+
+/* CSRF Token */
+input[name="csrfmiddlewaretoken"] {
+    display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseWatermark {
+    0%, 100% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.05);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 30px 25px;
+    }
+
+    body::before {
+        font-size: 6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 25px 20px;
+    }
+
+    body::before {
+        font-size: 4.2rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .form-container h2 {
+        font-size: 24px;
+    }
+
+    .form-group input {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .login-link {
+        font-size: 0.85rem;
+    }
+}

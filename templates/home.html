@@ -1,0 +1,50 @@
+
+{% extends 'nav.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System - Home</title>
+  <link rel="stylesheet" href="{% static 'style/style.css' %}">
+  <link rel="stylesheet" href="{% static 'style/home.css' %}">
+  
+
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Welcome to Our Library Management System</h1>
+      <p>Explore a world of knowledge with our advanced, user-friendly library system designed to make your reading experience seamless and enjoyable.</p>
+      <a href="#features" class="btn">Discover Features</a>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features" id="features">
+    <h2>Our Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Book Search</h3>
+        <p>Quickly find books by title, author, or genre with our powerful search engine.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Online Reservations</h3>
+        <p>Reserve books online and get notified when they are available for pickup.</p>
+      </div>
+      <div class="feature-card">
+        <h3>User Dashboard</h3>
+        <p>Manage your borrowed books, due dates, and reading history with ease.</p>
+      </div>
+    </div>
+  </section>
+
+ 
+
+</body>
+</html>
+{% endblock %}

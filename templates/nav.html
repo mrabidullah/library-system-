@@ -1,0 +1,59 @@
+{% load static %}
+<body>
+<head>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'style/home.css' %}">
+    
+
+ <nav class="navbar">
+        <div class="container">
+            <div class="logo">Library System</div>
+            <ul class="nav-links">
+                <li style="--i: 1;"><a href="{% url 'home' %}">Home</a></li>
+                <li style="--i: 2;"><a href="{% url 'book' %}">books</a></li>
+                <li style="--i: 3;"><a href="{% url 'adminlogin' %}">Admin</a></li>
+                <li style="--i: 4;"><a href="{% url 'form2' %}">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+  
+  {% block content %}
+    
+  {% endblock content %}
+
+{% block form %}
+  
+{% endblock form %}
+  
+{% block buy_form %}
+  
+{% endblock buy_form %}
+
+
+  <footer class="social-footer">
+    <div class="container">
+      <p>&copy; 2025 Library Management System. All rights reserved.</p>
+      <p class="designed-by">💻 Designed by Abid Developer</p>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
+               alt="Facebook" width="24" height="24"> Facebook
+        </a>
+        <a href="https://twitter.com" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" 
+               alt="Twitter" width="24" height="24"> Twitter
+        </a>
+        <a href="https://instagram.com" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+               alt="Instagram" width="24" height="24"> Instagram
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
+               alt="LinkedIn" width="24" height="24"> LinkedIn
+        </a>
+      </div>
+    </div>
+  </footer>
+  </body>
+</head>
